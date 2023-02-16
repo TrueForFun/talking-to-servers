@@ -25,47 +25,36 @@ console.log(objString);
 // const doggos = document.getElementById("dog-target");
 
 // function addNewDoggo() {
-// const promise = fetch(DOG_URL);
-// promise
-// .then(function (response) {
-// const processingPromise = response.json(); // instead of .innerText
-// return processingPromise;
-// })
-// .then(function (processedResponse) {
-// const dogObject = JSON.parse(processedResponse);
-// the upper line is dismissed by the json that is placed higher
-// const img = document.createElement("img");
-// img.src = processedResponse.message; //the dogObject is also gone.
-// img.alt = "Cute doggo";
-// doggos.appendChild(img);
-// });
+//   const promise = fetch(DOG_URL);
+//   promise
+//     .then(function (response) {
+//       const processingPromise = response.json(); // instead of .innerText
+//       return processingPromise;
+//     })
+//     .then(function (processedResponse) {
+//       const dogObject = JSON.parse(processedResponse);
+//       // the upper line is dismissed by the json that is placed higher
+//       const img = document.createElement("img");
+//       img.src = processedResponse.message; //the dogObject is also gone.
+//       img.alt = "Cute doggo";
+//       doggos.appendChild(img);
+//     });
 // }
 
 // document.getElementById("dog-btn").addEventListener("click", addNewDoggo);
-
-// const DOG_URL_1 = "https://dog.ceo/api/breeds/image/random";
-// const doggos2 = document.getElementById("dog-target-3");
-// async function addAsyncDog() {
-// const promiseNewDog = await fetch(DOG_URL_1);
-// const processedResponseNew = await promiseNewDog.json();
-// const newImg = document.createElement("newImg");
-// newImg.src = processedResponseNew.message;
-// newImg.alt = "the dog beast";
-// doggos2.appendChild(newImg);
-// }
-
-// document.getElementById("button-dog").addEventListener(`click`, addAsyncDog);
 const DOG_URL = "https://dog.ceo/api/breeds/image/random";
 
-const doggos = document.getElementById("dog-target");
+document
+  .getElementById("dog-image-button")
+  .addEventListener("click", addAsyncDog);
 
-async function addNewDoggo() {
-  const promise = await fetch(DOG_URL);
-  const processedResponse = await promise.json();
-  const img = document.createElement("img");
-  img.src = processedResponse.message;
-  img.alt = "Cute doggo";
-  doggos.appendChild(img);
+async function addAsyncDog() {
+  const response = await fetch(DOG_URL);
+  const processedResponse = await response.json();
+  const imgElement = document.createElement("img");
+  imgElement.src = processedResponse.message;
+  imgElement.alt = "the dog beast";
+  imgElement.style.width = "100%";
+
+  document.getElementById("dog-image-container").appendChild(imgElement);
 }
-
-document.getElementById("dog-btn").addEventListener("click", addNewDoggo);
